@@ -8,7 +8,7 @@
 import spy_details
 from steganography.steganography import Steganography
 from datetime import datetime
-from termcolor import COLORS
+from termcolor import colored
 
 
 special = ['sos', 'SOS', 'HELP', 'help']
@@ -158,7 +158,7 @@ def send_message():
 
     friends[friend_choice].chats.append(new_chat)
 
-    print (colored("Your secret message image is ready!",'blue')
+    print (colored("Your secret message image is ready!",'blue'))
 
 
 # FUNCTION OF READ MESSAGE
@@ -202,7 +202,7 @@ def start_chat(spy):
       if spy.age > 12 and spy.age < 50:
 
           print colored("Authentication complete. Welcome " + spy.name + " age: " \
-                        + str(USER.age) + " and rating of: " + str(USER.rating) + " Proud to have you onboard", 'cyan')
+                        + str(spy.age) + " and rating of: " + str(spy.rating) + " Proud to have you onboard", 'cyan')
 
           show_menu = True
 
@@ -214,7 +214,7 @@ def start_chat(spy):
                   menu_choice = int(menu_choice)
 
                   if menu_choice == 1:
-                      USER.current_status_message = add_status()
+                      spy.current_status_message = add_status()
                   elif menu_choice == 2:
                       number_of_friends = add_friend()
                       print 'You have %d friends' % (number_of_friends)
@@ -230,18 +230,18 @@ def start_chat(spy):
           print colored('Sorry you have entered the age not in between 12 to 50 so you are not a valid user', 'red')
 
 
-    STATUS_MESSAGES = ['Do good have good', 'Busy', 'Hey there i am using spy-chat']
-    print "Hello! Let\'s get started"
-    spy=Spy('','',0,0.0)
-    spy.name=raw_input("Welcome to spy chat,Your Name please:")
-    if spy_details.spy_name==spy.name:
+STATUS_MESSAGES = ['Do good have good', 'Busy', 'Hey there i am using spy-chat']
+print "Hello! Let\'s get started"
+spy=Spy('','',0,0.0)
+spy.name=raw_input("Welcome to spy chat,Your Name please:")
+if spy_details.spy_name==spy.name:
         spy.age=spy_details.spy_age
         spy.rating=spy_details.spy_rating
         spy.salutation=spy_details.spy_salutation
         start_chat(spy)
-    else:
+else:
 
-        if len(spy.name) > 0 and spy.name.isalpha():
+    if len(spy.name) > 0 and spy.name.isalpha():
             spy.salutation = raw_input("Should I call you Mr. or Ms.?: ")
 
             spy.age = raw_input("What is your age?")
@@ -251,7 +251,7 @@ def start_chat(spy):
             spy.rating = float(spy.rating)
 
             start_chat(spy)
-        else:
+    else:
             print 'Please add a valid spy name'
 
 
